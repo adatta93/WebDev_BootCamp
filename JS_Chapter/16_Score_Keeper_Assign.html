@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Score Keeper</title>
+</head>
+
+<body>
+    <h1><span id="pl1">0</span> to <span id="pl2">0</span></h1>
+    <p>Playing to: <span id="total">5</span></p>
+    <div>
+        <input type="number" id="totInp">
+        <button onclick="onPlay('pl1')">Player One</button>
+        <button onclick="onPlay('pl2')">Player Two</button>
+        <button onclick="reset()">Reset</button>
+    </div>
+    <script>
+        var totalPts = document.querySelector('#total');
+        var totInp = document.querySelector('#totInp');
+        var pl1 = document.querySelector('#pl1');
+        var pl2 = document.querySelector('#pl2');
+        totInp.addEventListener('change', _ => {
+            totalPts.textContent = totInp.value;
+            reset()
+        });
+        function onPlay(btnName) {
+            if ((Number(pl1.textContent) != Number(totalPts.textContent)) 
+                    && (Number(pl2.textContent) != Number(totalPts.textContent))) {
+                if (btnName == 'pl1') {
+                    pl1.textContent = Number(pl1.textContent) + 1;
+                    if (Number(pl1.textContent) == Number(totalPts.textContent)) {
+                        pl1.style.color = 'green';
+                    }
+                } else {
+                    pl2.textContent = Number(pl2.textContent) + 1;
+                    if (Number(pl2.textContent) == Number(totalPts.textContent)) {
+                        pl2.style.color = 'green';
+                    }
+                }
+            }
+
+        }
+        function reset() {
+            pl1.textContent = 0;
+            pl1.style.color = 'black';
+            pl2.textContent = 0;
+            pl2.style.color = 'black';
+        }
+    </script>
+</body>
+
+</html>

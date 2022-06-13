@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/img/nodejs.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap-4.3.1.min.css">
+    <link rel="stylesheet" href="/css/font-awesome-5.11.1-all.css">
+    <title>YelpCamp</title>
+</head>
+<style>
+    body {
+        background-color: #000;
+    }
+
+    #landing-header {
+        z-index: 1;
+        position: relative;
+        text-align: center;
+        padding-top: 40vh;
+    }
+
+    #landing-header h1 {
+        color: #fff;
+    }
+
+    .slideshow {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .slideshow li {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        opacity: 0;
+        z-index: 0;
+        animation: imageAnimation 30s linear infinite;
+    }
+
+    .slideshow li:nth-child(1) {
+        background-image: url("/img/coffee.jpg");
+    }
+
+    .slideshow li:nth-child(2) {
+        background-image: url("/img/fighting_deer.jpg");
+        animation-delay: 9.9s;
+    }
+
+    .slideshow li:nth-child(3) {
+        background-image: url("/img/star_wars.jpg");
+        animation-delay: 19.8s;
+    }
+
+    .slideshow li:nth-child(4) {
+        background-image: url("/img/coffee.jpg");
+        animation-delay: 15s;
+    }
+
+    .slideshow li:nth-child(5) {
+        background-image: url("/img/fighting_deer.jpg");
+        animation-delay: 20s;
+    }
+
+    @keyframes imageAnimation {
+        0% {
+            opacity: 0;
+            animation-timing-function: ease-in;
+        }
+
+        16.5% {
+            opacity: 1;
+            animation-timing-function: ease-out;
+        }
+
+        33% {
+            opacity: 1
+        }
+
+        49.5% {
+            opacity: 0
+        }
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark" style="z-index: 1;">
+        <a class="navbar-brand" href="/">YelpCamp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navLinks"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navLinks">
+            <ul class="navbar-nav ml-auto">
+                <% if(!currentUser){ %>
+                <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="/register" class="nav-link">Register</a></li>
+                <% } else{ %>
+                <li class="nav-item"><a class="nav-link">Welcome <%= currentUser.username %></a></li>
+                <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="landing-header">
+        <h1>Welcome to YelpCamp!</h1>
+        <a href="/campgrounds" class="btn btn-lg btn-success">View All Campgrounds</a>
+    </div>
+
+    <ul class="slideshow">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <div class="container" style="position: relative;top:40vh;">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Path</th>
+                    <th>HTTP Verb</th>
+                    <th>Puprose</th>
+                    <th>Mongoose Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-light">
+                    <td>Index</td>
+                    <td>/dogs</td>
+                    <td>GET</td>
+                    <td>List all dogs</td>
+                    <td>Dog.find()</td>
+                </tr>
+                <tr class="table-success">
+                    <td>New</td>
+                    <td>/dogs/new</td>
+                    <td>GET</td>
+                    <td>Show new dog add form</td>
+                    <td>N/A</td>
+                </tr>
+                <tr class="table-success">
+                    <td>Create</td>
+                    <td>/dogs</td>
+                    <td>POST</td>
+                    <td>Create a new dog, then redirect</td>
+                    <td>Dog.create()</td>
+                </tr>
+                <tr class="table-info">
+                    <td>Show</td>
+                    <td>/dogs/:id</td>
+                    <td>GET</td>
+                    <td>Show details of specific dog</td>
+                    <td>Dog.findById()</td>
+                </tr>
+                <tr class="table-warning">
+                    <td>Edit</td>
+                    <td>/dogs/:id/edit</td>
+                    <td>GET</td>
+                    <td>Show edit form for a specific dog</td>
+                    <td>Dog.findById()</td>
+                </tr>
+                <tr class="table-warning">
+                    <td>Update</td>
+                    <td>/dogs/:id</td>
+                    <td>PUT</td>
+                    <td>Update a specific dog, then redirect</td>
+                    <td>Dog.findByIdAndUpdate()</td>
+                </tr>
+                <tr class="table-danger">
+                    <td>Delete</td>
+                    <td>/dogs/:id</td>
+                    <td>DELETE</td>
+                    <td>Delete a specific dog, then redirect</td>
+                    <td>Dog.findByIdAndDelete()</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <% include ./partials/footer %>

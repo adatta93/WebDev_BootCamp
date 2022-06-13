@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>HTML Forms Assignment</title>
+</head>
+
+<body>
+    <h2>Register</h2>
+    <form>
+        <label>First Name:<input name="firstname" placeholder="John" required></label>
+        <label>Last Name:<input name="lastname" placeholder="Doe" required></label>
+        <br>
+        <label>Male<input type="radio" name="gender" value="male"></label>
+        <label>Female<input type="radio" name="gender" value="female"></label>
+        <label>Other<input type="radio" name="gender" value="other"></label>
+        <br>
+        <label>Email<input type="email" name="email" placeholder="your email" required></label>
+        <label>Password<input type="password" name="pwd" placeholder="your password" pattern=".{5,10}"
+                title="5 to 10 characters" required></label>
+        <br>
+        <label>Birthday</label>
+        <select name="month">
+            <option>Month</option>
+            <option>January</option>
+            <option>February</option>
+        </select>
+        <select name="day">
+            <option>Day</option>
+            <option>01</option>
+            <option>02</option>
+        </select>
+        <select name="year">
+            <option>Year</option>
+            <option>2018</option>
+            <option>2019</option>
+        </select>
+        <br>
+        I agree to the terms and conditions <input type="checkbox" name="consent" value="yes">
+        <input type="submit">
+    </form>
+</body>
+
+</html>

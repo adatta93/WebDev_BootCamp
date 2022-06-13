@@ -1,0 +1,193 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Tic Tac Toe Exercise</title>
+	<style>
+		h1,
+		h3 {
+			text-align: center;
+		}
+
+		table {
+			margin: 0 auto;
+		}
+
+		td {
+			width: 100px;
+			height: 100px;
+			border: 2px solid black;
+			border-top: 0;
+			border-left: 0;
+			text-align: center;
+			font-size: 4em;
+		}
+
+		tr:nth-of-type(3) td {
+			border-bottom: 0;
+		}
+
+		td:nth-of-type(3) {
+			border-right: 0;
+		}
+
+		.strike {
+			border-top: 5px solid black;
+			width: 359px;
+			height: 1px;
+			position: absolute;
+		}
+
+		#winHoriz {
+			top: 57px;
+			left: 37%;
+		}
+
+		#winDiag {
+			top: 159px;
+			left: 37%;
+			transform: rotate(45deg);
+		}
+
+		#winVert {
+			top: 159px;
+			left: 28.5%;
+			transform: rotate(90deg);
+		}
+
+		.resetButton {
+			display: block;
+			margin: auto;
+			padding: 5px 10px;
+			border: 0;
+			background: darkorchid;
+			color: white;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Tic Tac Toe</h1>
+	<h3>Turn: Player <span id="pl"></span></h3><button class="resetButton" onclick="reset()">Play Again</button>
+	<h3 style="color:red;" id="winner"></h3>
+	<div style="position: relative;">
+		<table>
+			<tr>
+				<td id="1" onclick="play('1')"></td>
+				<td id="2" onclick="play('2')"></td>
+				<td id="3" onclick="play('3')"></td>
+			</tr>
+			<tr>
+				<td id="4" onclick="play('4')"></td>
+				<td id="5" onclick="play('5')"></td>
+				<td id="6" onclick="play('6')"></td>
+			</tr>
+			<tr>
+				<td id="7" onclick="play('7')"></td>
+				<td id="8" onclick="play('8')"></td>
+				<td id="9" onclick="play('9')"></td>
+			</tr>
+		</table>
+		<div id="winHoriz" class="strike"></div>
+		<div id="winDiag" class="strike"></div>
+		<div id="winVert" class="strike"></div>
+	</div>
+</body>
+<script>
+	reset();
+	function reset() {
+		pl1 = { 'icon': 'X', 'turn': true, 'ids': [] };
+		pl2 = { 'icon': 'O', 'turn': false, 'ids': [] };
+		var i = 1;
+		while (i < 10) {
+			document.getElementById(i).innerHTML = '';
+			i++;
+		}
+		document.getElementById('pl').innerHTML = '1';
+		document.getElementById('winHoriz').style.display = 'none';
+		document.getElementById('winDiag').style.display = 'none';
+		document.getElementById('winVert').style.display = 'none';
+	}
+	function play(id) {
+		if ((document.getElementById(id).innerHTML != 'X' && document.getElementById(id).innerHTML != 'O')) {
+			if (pl1.turn) {
+				document.getElementById(id).innerHTML = pl1.icon;
+				pl1.ids.push(id);
+				if (isWinner(pl1)) {
+					document.getElementById('winner').innerHTML = 'Player 1 Wins';
+				} else {
+					if (checkDraw()) {
+						document.getElementById('winner').innerHTML = 'Draw';
+					} else {
+						pl2.turn = true;
+						pl1.turn = false;
+						document.getElementById('pl').innerHTML = '2';
+					}
+				}
+
+			} else {
+				document.getElementById(id).innerHTML = pl2.icon;
+				pl2.ids.push(id);
+				if (isWinner(pl2)) {
+					document.getElementById('winner').innerHTML = 'Player 2 Wins';
+				} else {
+					if (checkDraw()) {
+						document.getElementById('winner').innerHTML = 'Draw';
+					} else {
+						pl2.turn = false;
+						pl1.turn = true;
+						document.getElementById('pl').innerHTML = '1';
+					}
+				}
+			}
+		}
+	}
+	function checkDraw() {
+		var i = 1, count = 0;
+		while (i < 10) {
+			if (document.getElementById(i).innerHTML == 'X' || document.getElementById(i).innerHTML == 'O')
+				count++;
+			i++;
+		}
+		return (count == 9) ? true : false;
+	}
+	function isWinner(players) {
+		if (players.ids.includes('1') && players.ids.includes('2') && players.ids.includes('3')) {
+			document.getElementById('winHoriz').style.display = 'block';
+			return true;
+		} else if (players.ids.includes('4') && players.ids.includes('5') && players.ids.includes('6')) {
+			document.getElementById('winHoriz').style.display = 'block';
+			document.getElementById('winHoriz').style.top = '157px';
+			return true;
+		} else if (players.ids.includes('7') && players.ids.includes('8') && players.ids.includes('9')) {
+			document.getElementById('winHoriz').style.display = 'block';
+			document.getElementById('winHoriz').style.top = '250px';
+			return true;
+		} else if (players.ids.includes('1') && players.ids.includes('5') && players.ids.includes('9')) {
+			document.getElementById('winDiag').style.display = 'block';
+			return true;
+		} else if (players.ids.includes('1') && players.ids.includes('4') && players.ids.includes('7')) {
+			document.getElementById('winVert').style.display = 'block';
+			return true;
+		} else if (players.ids.includes('2') && players.ids.includes('5') && players.ids.includes('8')) {
+			document.getElementById('winVert').style.display = 'block';
+			document.getElementById('winVert').style.left = '36.5%';
+			return true;
+		} else if (players.ids.includes('3') && players.ids.includes('6') && players.ids.includes('9')) {
+			document.getElementById('winVert').style.display = 'block';
+			document.getElementById('winVert').style.left = '44%';
+			return true;
+		} else if (players.ids.includes('3') && players.ids.includes('5') && players.ids.includes('7')) {
+			document.getElementById('winDiag').style.display = 'block';
+			document.getElementById('winDiag').style.top = '146px';
+			document.getElementById('winDiag').style.left = '36%';
+			document.getElementById('winDiag').style.transform = 'rotate(135deg)';
+			return true;
+		}
+		return false;
+	}
+</script>
+
+</html>

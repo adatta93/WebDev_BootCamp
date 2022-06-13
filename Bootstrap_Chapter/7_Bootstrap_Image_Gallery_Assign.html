@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Bootstrap 3 Image Gallery Assignment</title>
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-3.3.5.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/font-awesome-4.4.0.min.css">
+	<style>
+		body {
+			padding-top: 70px;
+		}
+
+		.navbar-inverse {
+			background-color: #cd5c5c;
+			color: white;
+			border-color: #cd5c5c;
+		}
+
+		.navbar-inverse .navbar-brand,
+		.navbar-inverse .navbar-nav>li>a {
+			color: white;
+		}
+
+		.jumbotron {
+			color: #cd5c5c;
+			background-color: #ecf0f1;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+
+		.thumbnail a>img,
+		.thumbnail>img {
+			height: 240px;
+			width: 425px;
+		}
+
+		.thumbnail {
+			padding: 0;
+			border: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-image-gallery">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand"><span class="glyphicon glyphicon-picture"></span> IMGS</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-image-gallery">
+				<ul class="nav navbar-nav">
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Sign Up</a></li>
+					<li><a href="#">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="jumbotron">
+			<h1><i class="fa fa-camera-retro"></i> The Image Gallery</h1>
+			<p>A bunch of images</p>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-md-6">
+				<div class="thumbnail"><img src="F:\Windows Wallpapers\E.jpg"></div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="thumbnail"><img src="F:\Windows Wallpapers\skyfall.jpg"></div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="thumbnail"><img src="F:\Windows Wallpapers\LadakhStories.jpg"></div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="thumbnail"><img src="F:\Windows Wallpapers\Flower_4.jpg"></div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="thumbnail"><img src="F:\Windows Wallpapers\Flower_2.jpg"></div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="thumbnail"><img src="F:\Windows Wallpapers\Flower_3.jpg"></div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="thumbnail"><img src="F:\Windows Wallpapers\Spotted_Majesty.jpg"></div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="thumbnail"><img src="F:\Windows Wallpapers\Leopard.jpg"></div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="thumbnail"><img src="F:\Windows Wallpapers\Windows_4.jpg"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../assets/js/jquery-2.1.4.js"></script>
+	<script src="../assets/js/bootstrap-3.3.5.min.js"></script>
+</body>
+
+</html>
